@@ -1,0 +1,14 @@
+# Configure the DNSimple provider
+provider "dnsimple" {
+  token = "username"
+  account = "accout"
+}
+
+# Add a record to the root domain
+resource "dnsimple_record" "foobar" {
+  domain = "ttest.com"
+  name   = "ttest web01"
+  value  = "${aws_instance.web.0.public_ip}"
+  type   = "A"
+  ttl    = 3600
+}
